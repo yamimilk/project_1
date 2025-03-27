@@ -8,7 +8,6 @@
 
 <script setup>
 import ShoppingCart from './components/ShoppingCart.vue'
-console.log(ShoppingCart);
 </script>
 
 <style scoped>
