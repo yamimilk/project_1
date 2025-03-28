@@ -50,7 +50,7 @@
       </table>
     </div>
   </div>
-  <!-- <h3>totalPrice:{{ totalPrice }}</h3> -->
+  <h3 >totalPrice:{{ totalPrice }}</h3>
 
 </template>
 
@@ -92,6 +92,10 @@ onMounted(() => {
   }
 })
 console.log(localStorage.getItem('cart'));
+
+const totalPrice = computed(()=>{
+  return cart.reduce((sum,item) => sum + item.price*item.number,0).toFixed(2)
+})
 
 
 const increase = (product) => {
