@@ -1,21 +1,43 @@
 <template>
-    <form @submit.prevent="submit">
-        <input v-model="name">
+    <form @submit.prevent="handleSubmit">
+        <label for="name">name:</label>
+        <input v-model="name" placeholder="edit name"/>
         <button type="submit">submit</button>
     </form>
 </template>
 
-<script>
-import { ref,defineProps } from 'vue';
+<script setup>
+import { ref} from 'vue';
+import { inject,watchEffect } from 'vue';
+import NotificationContainer from './NotificationContainer.vue';
+const notifier = inject('notifier')
 
-const props = defineProps(['notificationRef'])
 const name = ref('')
 
-const submit =() =>{
-    if(!name.value.trim()){
-        props.notificationRef.show('can not null')
-        return;
+watchEffect(() => {
+  console.log('Injected notifier:', notifier);
+});
+
+const handleSubmit = async() =>{
+   try {
+        if(name){
+            console.log(name);           
+        }
+        if (notifier) {
+      notifier.addNotification({
+        message: 'Success',
+        type: 'success'
+      });
+    } else {
+      console.error('Notifier is not available');
     }
-    name.value =''
+   } catch(error) {
+    notifier.value?.addNotification({
+        message:`error:${error.message}`,
+        type:'error',
+        duration:5000
+    })
+   }
 }
+
 </script>

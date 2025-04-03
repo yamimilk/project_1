@@ -8,8 +8,8 @@
      <div v-else>
       <span>nothing</span>
      </div> -->
-     <contactForm :notificationRef="notificationRef"/>
-     <Notification ref="notificationRef"/>
+     <ContactForm/>
+    <NotificationContainer ref="notifier" v-if="isNotifierReady"/>
   </div>
 
 </template>
@@ -19,10 +19,17 @@ import {ref} from 'vue';
 import LoadingSpinner from './components/LoadingSpinner.vue';
 import ShoppingCart from './components/ShoppingCart.vue'
 import ContactForm from './components/ContactForm.vue'
-import Notification from './components/Notification.vue';
+import NotificationContainer from './components/NotificationContainer.vue';
+import { provide } from 'vue';
+const notifier = ref(null)
 
-const notificationRef = ref(null)
 
+watchEffect(() => {
+  if (notifier.value) {
+    console.log('Notifier instance set:', notifier.value);
+    provide('notifier', notifier.value); // 确保 `provide` 的是 `notifier.value`
+  }
+});
 //animation component
 // const loading = ref(true)
 // setTimeout(()=>{
