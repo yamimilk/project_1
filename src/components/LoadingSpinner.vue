@@ -7,7 +7,7 @@
          <div v-if="type === 'dots'" class="dots">
             <div v-for="i in 3" :key="i" class="dot" :style="{ background: color, width: size / 5 + 'px', height: size / 5 + 'px' }"></div>
          </div>
-         <span v-if="showText" class="text">{{ text }}</span>
+         <span class="text" :style="{ color }">{{ text }}</span>
     </div>
 </template>
 
@@ -77,6 +77,5 @@
 
 .text {
     margin-top: 8px;
-    color: v-bind(color);
 }
 </style>

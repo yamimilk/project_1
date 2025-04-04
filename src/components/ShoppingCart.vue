@@ -57,7 +57,6 @@
 
 <script lang="js" setup>
 import { computed, onMounted, reactive, ref, watch,toRef} from 'vue';
-import { setItem, getItem } from '../localStorageUtils';
 
 //shopping card data
 //Todo:这里应该没有货物的数量，货物的数量应该存在在购物车里，页面展示时也不应该使用products进入循环，而应该使用购物车的数据
