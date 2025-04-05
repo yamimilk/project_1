@@ -10,8 +10,15 @@
      </div> -->
      <!-- <ContactForm/>
     <NotificationContainer ref="notifier" v-if="isNotifierReady"/> -->
-
-    <ChatWindow/>
+    <!-- <ChatWindow/> -->
+     <div class="image-list">
+      <lazyImage
+        v-for="i in 20"
+        :key="i"
+        :src="`https://picsum.photos/300/200?random=${i}`"
+        alt="random picture"
+      />
+     </div>
   </div>
 
 </template>
@@ -24,6 +31,7 @@ import ContactForm from './components/ContactForm.vue'
 import NotificationContainer from './components/NotificationContainer.vue';
 import MessageList from './components/MessageList.vue';
 import ChatWindow from './components/ChatWindow.vue';
+import LazyImage from './components/LazyImage.vue';
 //消息通知组件
 // import { provide } from 'vue';
 
@@ -47,5 +55,8 @@ import ChatWindow from './components/ChatWindow.vue';
 </script>
 
 <style scoped>
-
+ .image-list {
+  max-width: 320px;
+  margin: 0 auto;
+ }
 </style>
