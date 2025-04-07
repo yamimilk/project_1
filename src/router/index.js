@@ -6,7 +6,7 @@ import LazyImageDemo from '../views/demo/LazyImageDemo.vue';
 import ChatWindow from '../components/ChatWindow.vue';
 import AppLayout from '../components/AppLayout.vue';
 import NoticeDemo from '../views/demo/NoticeDemo.vue';
-
+import TagInput from '../components/TagInput.vue';
 
 const routes = [
     {
@@ -17,7 +17,8 @@ const routes = [
             {path:'shopping',component:ShoppingCart},
             {path:'lazyImage',component:LazyImageDemo},
             {path:'loadingSpinner',component:LoadingSpinnerDemo},
-            {path:'notice',component:NoticeDemo}
+            {path:'notice',component:NoticeDemo},
+            {path:'tagInput',component:TagInput}
         ]
     }
 ];
