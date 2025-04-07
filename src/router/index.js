@@ -7,6 +7,7 @@ import ChatWindow from '../components/ChatWindow.vue';
 import AppLayout from '../components/AppLayout.vue';
 import NoticeDemo from '../views/demo/NoticeDemo.vue';
 import TagInput from '../components/TagInput.vue';
+import StepComponent from '../components/StepComponent.vue';
 
 const routes = [
     {
@@ -18,7 +19,8 @@ const routes = [
             {path:'lazyImage',component:LazyImageDemo},
             {path:'loadingSpinner',component:LoadingSpinnerDemo},
             {path:'notice',component:NoticeDemo},
-            {path:'tagInput',component:TagInput}
+            {path:'tagInput',component:TagInput},
+            {path:'step',component:StepComponent}
         ]
     }
 ];

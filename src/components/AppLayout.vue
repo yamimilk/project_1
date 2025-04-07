@@ -20,6 +20,7 @@
             <el-menu-item index="/loadingSpinner">LoadingSpinner</el-menu-item>
             <el-menu-item index="/notice">Notice</el-menu-item>
             <el-menu-item index="/tagInput">TagInput</el-menu-item>
+            <el-menu-item index="/step">Step</el-menu-item>
           </el-menu>
         </div>
       </el-aside>
