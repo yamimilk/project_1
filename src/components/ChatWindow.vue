@@ -59,7 +59,7 @@ import LoadingSpinner from './LoadingSpinner.vue';
 
     const removeChat =()=>{
         localStorage.removeItem('message')
-        messages.value='';
+        messages.value=[];
     }
 </script>
 
