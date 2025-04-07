@@ -1,6 +1,6 @@
 <template>
     <div class="chat-window">
-        <AsyncMessageList :messages="messages"/>
+        <AsyncMessageList :messages="messages" />
         <div class="input-box">
             <input v-model="newMessage" placeholder="send message" @keyup.enter="sendMessage"/>
             <button @click="sendMessage">send</button>
@@ -10,12 +10,12 @@
 </template>
 
 <script setup>
-import { defineAsyncComponent, onMounted, ref } from 'vue';
+import { defineAsyncComponent, onMounted, ref,h } from 'vue';
 import LoadingSpinner from './LoadingSpinner.vue';
+import { notify } from '../utils/Notice';
 
     const messages =ref([])
     const newMessage = ref('')
-    const loading = ref(true)
     const AsyncMessageList = defineAsyncComponent({
         // loader:() => import('./MessageList.vue'),
         //延长加载时间测试懒加载已实现
@@ -24,8 +24,8 @@ import LoadingSpinner from './LoadingSpinner.vue';
             resolve(import('./MessageList.vue'))
         }, 1000);
         }),
-        loadingComponent: LoadingSpinner,
-        delay:0
+        loadingComponent: () => h(LoadingSpinner,{type:'dots'}),
+        delay:0,
     })
 
     onMounted(()=>{
@@ -53,13 +53,18 @@ import LoadingSpinner from './LoadingSpinner.vue';
                 text:newMessage.value
             });
             newMessage.value='';
-            localStorage.setItem('message',JSON.stringify(messages.value))
+            localStorage.setItem('message',JSON.stringify(messages.value));
+            //notice
+            notify('success','message sent','success sent');
         }
     }
 
     const removeChat =()=>{
         localStorage.removeItem('message')
         messages.value=[];
+
+        //notice: remove success
+        notify('success','remove message', 'All messages were removed!');
     }
 </script>
 

@@ -17,8 +17,6 @@
 
 
 <script lang="js" setup>
-
-
 defineProps({
     type: {
         type: String,

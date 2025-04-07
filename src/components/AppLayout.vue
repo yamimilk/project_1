@@ -18,6 +18,7 @@
             <el-menu-item index="/shopping">ShoppingCart</el-menu-item>
             <el-menu-item index="/lazyImage">LazyImage</el-menu-item>
             <el-menu-item index="/loadingSpinner">LoadingSpinner</el-menu-item>
+            <el-menu-item index="/notice">Notice</el-menu-item>
           </el-menu>
         </div>
       </el-aside>
