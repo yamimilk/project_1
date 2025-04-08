@@ -4,12 +4,31 @@
 
 <script setup>
 import * as echarts from 'echarts'
-import { onMounted,ref } from 'vue'
+import { onMounted,ref,watch } from 'vue'
+
+//Props
+const props = defineProps({
+    incomeData:{
+        type:Array,
+        required:true
+    },
+    expenseData:{
+        type:Array,
+        required:true
+    },
+    months:{
+        type:Array,
+        default:()=>['Jan','Feb','Mar','Apr','May','Jun']
+    }
+})
 
 const ChartContainer = ref(null)
+let chartInstance = null
 
-onMounted(() => {
-    const chart = echarts.init(ChartContainer.value)
+const renderChart = () =>{
+    if(!chartInstance) {
+        chartInstance = echarts.init(ChartContainer.value)
+    }
 
     const option = {
         title: {
@@ -22,7 +41,7 @@ onMounted(() => {
             top:'10%'
         },
         xAxis: {
-            data:['January','February','March','May','June','July']
+            data:props.months
         },
         yAxis: {
             type:'value',
@@ -31,15 +50,19 @@ onMounted(() => {
             {
                 name:'income',
                 type:'line',
-                data:[1500,2000,1800,2300,2100,2500,3000],
+                data:props.incomeData
             },
             {
                 name:'expense',
                 type:'line',
-                data:[1000,1500,1300,1400,1200,1600,1900],
+                data:props.expenseData
             }
         ]
     }
-    chart.setOption(option)
-})
+    chartInstance.setOption(option)
+}
+
+onMounted(renderChart)
+
+watch(()=>[props.incomeData,props.expenseData],renderChart,{deep:true})
 </script>

@@ -12,7 +12,7 @@ export const useAccountBook = defineStore('accountBook', {
 
     actions: {
         addRecord(record) {
-            this.records.push(record)
+            this.records.push({...record,date: new Date().toDateString()})
             this.saveToLocalStorage()
         },
         deleteRecord(index){
