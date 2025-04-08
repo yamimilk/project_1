@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from 'vue';
+import Chart from '../../components/Chart.vue';
 import { useAccountBook } from '../../stores/AccountBookStore';
 
 const store = useAccountBook()
@@ -23,8 +24,7 @@ const deleteRecord = (index) =>{
 }
 
 const records = store.records
-const incomeTotal = store.incomeTotal
-const expenseTotal = store.expenseTotal
+
 </script>
 
 <template>
@@ -75,4 +75,5 @@ const expenseTotal = store.expenseTotal
             <p>expenseTotal:{{ store.expenseTotal }}</p>
         </div>
     </div>
+    <!-- <Chart/> -->
 </template>
