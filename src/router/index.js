@@ -8,6 +8,8 @@ import AppLayout from '../components/AppLayout.vue';
 import NoticeDemo from '../views/demo/NoticeDemo.vue';
 import TagInput from '../components/TagInput.vue';
 import StepComponent from '../components/StepComponent.vue';
+import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs';
+import AccountBook from '../views/accountBook/AccountBook.vue';
 
 const routes = [
     {
@@ -20,7 +22,8 @@ const routes = [
             {path:'loadingSpinner',component:LoadingSpinnerDemo},
             {path:'notice',component:NoticeDemo},
             {path:'tagInput',component:TagInput},
-            {path:'step',component:StepComponent}
+            {path:'step',component:StepComponent},
+            {path:'account',component:AccountBook}
         ]
     }
 ];
