@@ -19,6 +19,10 @@ export const useAccountBook = defineStore('accountBook', {
             this.records.splice(index,1)
             this.saveToLocalStorage()
         },
+        modifyRecord(index,newRecord){
+            this.records[index] = newRecord
+            this.saveToLocalStorage()
+        },
         saveToLocalStorage(){
             localStorage.setItem('account-records',JSON.stringify(this.records))
         }

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue';
+import { computed, reactive,ref} from 'vue';
 import Chart from '../../components/Chart.vue';
 import { useAccountBook } from '../../stores/AccountBookStore';
 
@@ -35,14 +35,40 @@ const expenseData = computed(()=>{
 
 const form = reactive({
     type: '',
+    time:null,
     amount: 0,
     note: ''
 })
 
+const dateValue = ref(null)
+const editingIndex = ref(null)
+
 const handleAdd = () => {
     if (!form.type || form.amount <= 0) return
-    store.addRecord({ ...form ,date: new Date().toDateString()})
+    const formattedDate = new Date(form.time).toISOString().slice(0, 10) 
+    store.addRecord({ ...form ,time:formattedDate})
     form.type = ''
+    form.time = null
+    form.amount = 0
+    form.note = ''
+    dateValue.value = null
+}
+
+const startEdit = (index) =>{
+    const record = store.records[index]
+    editingIndex.value = index
+    form.type = record.type
+    form.time = record.time
+    form.amount = record.amount
+    form.note = record.note
+}
+
+const handleMod = (index) =>{
+    if(editingIndex.value === null) return
+    store.modifyRecord(editingIndex.value,{...form})
+    editingIndex.value = null
+    form.type = ''
+    form.time = null
     form.amount = 0
     form.note = ''
 }
@@ -67,6 +93,16 @@ const records = store.records
                 </el-select>
             </el-form-item>
 
+            <el-form-item label="selectTime">
+                <el-date-picker
+                  v-model="form.time"
+                  type="date"
+                  placeholder="select time"
+                  :clearable="true"
+                >
+                </el-date-picker>
+            </el-form-item>
+
             <el-form-item label="amount">
                 <el-input-number v-model="form.amount" :min="0" />
             </el-form-item>
@@ -83,6 +119,7 @@ const records = store.records
 
         <el-table :data="records" style="width: 100%;">
             <el-table-column prop="type" label="type" />
+            <el-table-column prop="time" label="time"/>
             <el-table-column prop="amount" label="amount" />
             <el-table-column prop="note" label="note" />
             <el-table-column label="option" width="80" fixed="right" align="center">

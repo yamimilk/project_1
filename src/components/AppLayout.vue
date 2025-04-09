@@ -22,7 +22,6 @@
             <el-menu-item index="/tagInput">TagInput</el-menu-item>
             <el-menu-item index="/step">Step</el-menu-item>
             <el-menu-item index="/account">AccountBOOK</el-menu-item>
-            <el-menu-item index="/chart">Chart</el-menu-item>
           </el-menu>
         </div>
       </el-aside>

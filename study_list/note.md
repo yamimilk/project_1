@@ -12,7 +12,7 @@
        getters：派生状态（相当于计算属性） ，只读， 自动缓存，自动更新
        actions：方法/函数（操作状态），每个属性是一个方法，用来更新state或执行异步操作（fetch）。ps：箭头函数的this动态绑定，非store实例，而普通函数中的this会被pinia绑定成当前store实例。
 4. 现代异步数据加载封装库/工具  
-        Axios :自动处理JSON，取消请求，超时处理
+        Axios :自动处理JSON，取消请求，超时处理，支持 Promise 链式调用，也可配合 async/await。统一的请求方法：axios.get(), axios.post()
         SWR：基于fetch，React专用
         useFetch：VueUse的
 5. 模板中“：”的作用：   

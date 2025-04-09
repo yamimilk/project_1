@@ -27,7 +27,6 @@ const routes = [
             {path:'tagInput',component:TagInput},
             {path:'step',component:StepComponent},
             {path:'account',component:AccountBook},
-            {path:'chart',component:Chart},
             {path:'/:catchAll(.*)',component:NotFund}
         ]
     }
