@@ -7,3 +7,6 @@
 
 - 技术栈：
   Vue3 + Pinia + Vite + LocalStorage
+
+
+  ps：结束，图表显示仍有问题待修正
