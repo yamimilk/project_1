@@ -1,5 +1,16 @@
 # Vue 3 + Vite
+# 已完成组件清单：
+  1. 加载动画组件（支持类型选择）
+  2. 消息通知组件（自动消失）
+  3. 消息列表组件
+  4. 聊天窗口组件
+  5. 图片懒加载组件
+  6. 消息懒加载
+  7. 标签输入组件（类似邮箱收件人输入）
+  8. 购物车组件
+  9. 步骤条组件
+# 已完成小项目练习：  
+   个人记账本
+# 手写实现：  
+简易vue3响应式系统
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
