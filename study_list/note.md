@@ -34,7 +34,7 @@
         安装：npm install echarts  
 ```  
 ```
-7. vue3中的响应式系统 
+7. vue3中的响应式系统相关概念   
 <!-- 执行过程 -->
         effect(fn) 执行时   
                 ↓  
@@ -59,6 +59,9 @@
 
         track的作用：记录当前属性被那些effect()函数依赖了  
 
+        toRef(obj,key):包裹对象的某个属性（key）为ref，从而可以独立传递  
+        toRefs(obj)：将响应式对象的所有属性变为ref，方便结构赋值时保持响应式
+
         wrapper：包装器
 
         所以响应式对象的特点是：  
@@ -74,17 +77,31 @@
 
          依赖收集+触发图解：  
 
-         访问属性               改变属性
-          ↓                      ↓
-   +----------------+     +----------------+
-   |  effect(fn) 执行 |     |  state.count++ |
-   +----------------+     +----------------+
-          ↓                      ↓
-    track(obj, key)         trigger(obj, key)
-          ↓                      ↓
-     depsMap.set(key,dep)   dep.forEach(fn => fn())
-          ↓                      ↓
-   dep.add(activeEffect)     重新执行 effect(fn)
+                  访问属性               改变属性
+                   ↓                      ↓
+            +----------------+     +----------------+
+            |  effect(fn) 执行 |     |  state.count++ |
+            +----------------+     +----------------+
+                   ↓                      ↓
+             track(obj, key)         trigger(obj, key)
+                   ↓                      ↓
+              depsMap.set(key,dep)   dep.forEach(fn => fn())
+                   ↓                      ↓
+            dep.add(activeEffect)     重新执行 effect(fn)  
+
+        watch函数相关概念：参数source:观察的数据来源，可以是一个ref，一个getter函数，eg.()=>state.count,一个reactive对象  
+                              cb：当source的值发生变化时要执行的回调函数，接受两个参数：newValue  和  oldValue  
+                              options:可选的配置对象，支持immediate，控制是否在第一次watch时立即执行cb
+                        watch函数监控时若拿到的参数既不是ref，也不是函数而是一个对象，那就默认想watch整个对象，这时用traverse来递归访问对象的每一个属性，  
+                        从而建立依赖追踪。用 seen Set 防止循环引用（避免无限递归）  
+                        immediate 是 Vue 中 watch 的一个选项，意思是：  
+                        如果设为 true，就在监听器绑定之后立即执行一次 cb 回调，默认是 false，这时会先执行一次 getter() 得到 oldValue，不调用回调 
+
+        customeRef:核心作用是 让你自定义 ref 的响应式行为(.value 的 获取（get）和设置（set）时的行为)。这在一些特殊需求下特别有用  
+        比如：实现防抖输入框、节流、缓存、异步控制等。
+        防抖（debounce）：延迟一段时间再触发，如果中途又发生变化，就重新计时  
+        常用于搜索框输入，只有用户停下来一段时间后才执行操作
+
 ```
 
 
