@@ -23,7 +23,7 @@
         SWR：基于fetch，React专用
         useFetch：VueUse的
 
-5. 模板中“：”的作用：   
+## 5. 模板中“：”的作用：   
         动态绑定，是v-bind的缩写
 
 
